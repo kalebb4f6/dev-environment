@@ -1,0 +1,20 @@
+version: "3.3"
+
+services:
+  portainer:
+    image: portainer/portainer:latest
+    ports:
+      - 80:9000
+      - 8000
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  portainer_data:
+    external: true
+
+#docker service create --publish published=9002,target=9000 --publish published=8000,target=8000 --name portainer \
+#--mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock \
+#--mount type=volume,source=portainer_data,destination=/data \
+#portainer/portainer:latest
